@@ -6,55 +6,80 @@
 **Course:** Software Engineering
 
 ## Objective
-Apply static code analysis tools to identify and fix code-quality issues, potential bugs, and security vulnerabilities in a Python IT Helpdesk Ticket Allocator.
+Use Pylint, Bandit, and Flake8 to identify and fix code-quality issues, potential bugs, security vulnerabilities, and formatting problems in the assigned Python IT Helpdesk Ticket Allocator.
 
-## Problem Statement
-IT Helpdesk Ticket Allocator — a Python program for creating, assigning, updating, prioritizing, and closing helpdesk tickets.
+## Assigned Problem
+**IT Helpdesk Ticket Allocator**
 
-## Implementation
 The program supports:
-- Creating tickets with urgency levels from 1 to 5.
+- Creating helpdesk tickets with urgency levels from 1 to 5.
 - Assigning tickets to technicians and adding notes.
 - Identifying unassigned high-priority tickets.
 - Closing tickets after admin password verification.
 - Saving ticket information in JSON format.
 
-The admin password is read from the `HELPDESK_ADMIN_PASSWORD` environment variable rather than being stored in the source code.
+The admin password is read from the `HELPDESK_ADMIN_PASSWORD` environment variable instead of being stored directly in the source code.
 
 ## Static Analysis Tools
-- **Pylint:** Code quality and programming practices.
-- **Bandit:** Potential security vulnerabilities.
-- **Flake8:** Python style and formatting checks.
+- **Pylint:** Checks code quality and programming practices.
+- **Bandit:** Identifies potential security vulnerabilities in Python code.
+- **Flake8:** Checks Python style and formatting, including PEP 8 issues.
 
 ## Issues Addressed
-- Replaced a mutable default argument with `None` and initialized the list within the function.
-- Moved the admin password to an environment variable.
-- Removed optional ping functionality that used `subprocess`.
-- Added urgency validation (integer values from 1 to 5).
-- Added checks for nonexistent ticket IDs.
-- Used a context manager and UTF-8 encoding for file handling.
-- Corrected formatting issues.
+The updated program addresses the following issues:
+- **Mutable default argument:** Replaced the shared list default with `None` and initialized the list inside the function.
+- **Hard-coded admin password:** Read the password from the `HELPDESK_ADMIN_PASSWORD` environment variable.
+- **Unsafe shell execution:** Removed the optional ping functionality that used `subprocess`.
+- **Invalid urgency values:** Added validation to accept only integer urgency values from 1 to 5.
+- **Missing ticket handling:** Check that a ticket exists before assigning it, adding notes, or closing it.
+- **File handling:** Used a context manager and UTF-8 encoding when saving ticket data.
+- **Formatting:** Corrected the identified formatting issues.
 
 ## Deliverables
-- `helpdesk_system.py` — Updated IT helpdesk ticket allocator.
-- `issues.md` — Identified issues and corresponding fixes.
-- `reflection.md` — Responses to the lab reflection questions.
-- `*_before.txt` and `*_after.txt` — Pylint, Bandit, and Flake8 analysis output files.
+- `helpdesk_system.py` — Cleaned and updated IT Helpdesk Ticket Allocator.
+- `issues.md` — Table documenting the identified issues and how they were addressed.
+- `reflection.md` — Answers to the lab reflection questions.
+- `pylint_before.txt` and `pylint_after.txt` — Pylint output files.
+- `bandit_before.txt` and `bandit_after.txt` — Bandit output files.
+- `flake8_before.txt` and `flake8_after.txt` — Flake8 output files.
 - `.gitignore` — Excludes the virtual environment and Python cache files.
 
-## Report Notes
-The final Pylint report records a score of **10.00/10**. The final Bandit report records **no issues identified**. The final Flake8 report file is empty. The original before-report files are retained unchanged.
+## Final Analysis Results
+- **Pylint:** **10.00/10**, exceeding the required score of 9.5.
+- **Bandit:** The final report records **no issues identified**.
+- **Flake8:** The final report file, `flake8_after.txt`, is intentionally empty. Flake8 prints output only when it finds violations, so an empty output file is the expected result when no style issues are reported.
+
+### Note on the Initial Reports
+The saved `*_before.txt` files contain the initial command-line messages stating that Pylint, Bandit, and Flake8 were not recognized as commands. They are preserved as recorded, but they are not completed baseline analysis reports. The `*_after.txt` files contain the final analysis output after the tools were run successfully.
 
 ## Setup and Execution
 Create and activate a virtual environment, then install the analysis tools:
 
 ```bash
 python -m venv venv
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
+```
 
+Windows Command Prompt:
+
+```cmd
+venv\Scripts\activate
+```
+
+PowerShell:
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+macOS/Linux:
+
+```bash
+source venv/bin/activate
+```
+
+Install the tools:
+
+```bash
 python -m pip install pylint bandit flake8
 ```
 
@@ -84,10 +109,14 @@ Run the program:
 python helpdesk_system.py
 ```
 
-Run the static analysis tools:
+## Run Static Analysis and Save the Final Reports
+
+Run these commands from the Lab 5 folder:
 
 ```bash
-python -m pylint helpdesk_system.py
-python -m bandit -r helpdesk_system.py
-python -m flake8 helpdesk_system.py
+python -m pylint helpdesk_system.py > pylint_after.txt 2>&1
+python -m bandit -r helpdesk_system.py > bandit_after.txt 2>&1
+python -m flake8 helpdesk_system.py > flake8_after.txt 2>&1
 ```
+
+These commands overwrite the corresponding `*_after.txt` files. A clean Flake8 run produces an empty `flake8_after.txt`; do not add text to that file just to make it non-empty.
