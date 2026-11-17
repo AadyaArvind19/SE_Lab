@@ -51,7 +51,7 @@ Create and activate a virtual environment, then install the analysis tools:
 ```bash
 python -m venv venv
 # Windows:
-venv\\Scripts\\activate
+venv\Scripts\activate
 # macOS/Linux:
 source venv/bin/activate
 
@@ -60,8 +60,22 @@ python -m pip install pylint bandit flake8
 
 Set the admin password for the current shell session:
 
+Windows Command Prompt:
+
 ```cmd
 set HELPDESK_ADMIN_PASSWORD=your_password
+```
+
+PowerShell:
+
+```powershell
+$env:HELPDESK_ADMIN_PASSWORD="your_password"
+```
+
+macOS/Linux:
+
+```bash
+export HELPDESK_ADMIN_PASSWORD=your_password
 ```
 
 Run the program:
