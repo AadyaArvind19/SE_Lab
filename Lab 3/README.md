@@ -46,5 +46,5 @@ Documented the reasons for selecting Layered Architecture, including two scenari
 2. **Written Justification:** Explains the selected architecture, reasons for selection, security advantage and performance benefit.
 
 ## Submitted Files
-- `PES2UG24CS008_SE_Lab3.pdf` — Complete lab submission.
+- `PES2UG24CS008_Lab3.pdf` — Complete lab submission.
 - `PES2UG24CS008_Lab3_Diagram.png` — Separately extracted UML Component Diagram.
