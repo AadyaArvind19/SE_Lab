@@ -47,4 +47,4 @@ Documented the reasons for selecting Layered Architecture, including two scenari
 
 ## Submitted Files
 - `PES2UG24CS008_SE_Lab3.pdf` — Complete lab submission.
-- `PES2UG24CS008_Lab3_Diagram_OriginalQuality.png` — Separately extracted UML Component Diagram.
+- `PES2UG24CS008_Lab3_Diagram.png` — Separately extracted UML Component Diagram.
